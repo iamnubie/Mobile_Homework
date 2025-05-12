@@ -1,0 +1,4 @@
+1. Mong muốn và định hướng của Bạn là gì sau khi học xong môn học là gì?
+- Trải nghiệm kiến thức mới, hoàn thiện chỉ tiêu của môn học, và trong quá trình đó sẽ đánh giá xem em có thích với hướng đi này không.
+2. Theo bạn, trong tương lai gần (10 năm) lập trình di động có phát triển không? Giải thích tại sao?
+- Trong 10 đến lập trình di động vẫn sẽ rất phát triển, bởi vì các nền tảng giải trí xã hội vẫn đang rất thịnh hành, đặc biệt là hình thức dưới dạng mobile sử dụng và truy cập rất tiện lợi, và điện thoại smartphone gần như là vật bất li gần của hầu hết các giới trẻ
