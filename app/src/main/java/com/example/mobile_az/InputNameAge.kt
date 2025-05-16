@@ -57,7 +57,7 @@ fun InputInfo(modifier: Modifier = Modifier) {
         )
         Box(
             modifier = Modifier
-                .background(Color.LightGray, RoundedCornerShape(8.dp))
+                .background(color = Color(0xFFEC1EFF), RoundedCornerShape(8.dp))
                 .padding(26.dp)
                 .constrainAs(boxForm) {
                     top.linkTo(tvTitle.bottom, margin = 30.dp)
