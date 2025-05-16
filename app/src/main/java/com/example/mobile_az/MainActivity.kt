@@ -37,14 +37,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             Mobile_AZTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyInfo(
-                        data = Data(
-                            image = R.drawable.avatar,
-                            name = "Nguyen Hong Minh",
-                            address = "To Ky, Tan Chanh Hiep"
-                        ),
-                        modifier = Modifier.padding(innerPadding)
-                    )
+//                    MyInfo(
+//                        data = Data(
+//                            image = R.drawable.avatar,
+//                            name = "Nguyen Hong Minh",
+//                            address = "To Ky, Tan Chanh Hiep"
+//                        ),
+//                        modifier = Modifier.padding(innerPadding)
+//                    )
+                    Outline(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

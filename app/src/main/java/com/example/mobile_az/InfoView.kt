@@ -10,8 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.mobile_az.ui.theme.Mobile_AZTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun MyInfo(
@@ -66,10 +78,11 @@ fun MyInfo(
         )
         Text(
             text = data.address,
+            textAlign = TextAlign.Justify,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
             color = Color.Black,
-            modifier = Modifier.constrainAs(tvAddress) {
+            modifier = Modifier.padding(start = 10.dp, end = 10.dp).constrainAs(tvAddress) {
                 top.linkTo(tvName.bottom, margin = 10.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -113,6 +126,7 @@ fun MyInfo(
     }
 }
 
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
@@ -120,8 +134,8 @@ fun GreetingPreview() {
         MyInfo(
             data = Data(
                 image = R.drawable.avatar,
-                name = "Nguyen Hong Minh",
-                address = "To Ky, Tan Chanh Hiep"
+                name = "Nguyen Hong Minh - CN22H",
+                address = "Trải nghiệm kiến thức mới, hoàn thiện chỉ tiêu của môn học, và trong quá trình đó sẽ đánh giá xem em có thích với hướng đi này không."
             ),
         )
     }
