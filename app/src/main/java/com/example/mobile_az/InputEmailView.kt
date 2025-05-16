@@ -2,6 +2,7 @@ package com.example.mobile_az
 
 import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -94,10 +95,12 @@ fun Outline(modifier: Modifier = Modifier){
                 }
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF1E90FF), // Màu xanh giống hình
+                containerColor = Color(0xFF1E90FF),
                 contentColor = Color.White
             ),
             modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp)
                 .constrainAs(btnCheck) {
                     top.linkTo(tvResult.bottom, margin = 20.dp)
                     start.linkTo(parent.start)
