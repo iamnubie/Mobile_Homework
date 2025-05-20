@@ -1,6 +1,5 @@
 package com.example.mobile_az
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,7 +33,7 @@ fun Outline(modifier: Modifier = Modifier){
             .fillMaxSize()
     ) {
         val horizontalGuideLine40 = createGuidelineFromTop(0.4f)
-        val (tvTitle, txtEmail, tvResult, btnCheck) = createRefs()
+        val (tvTitle, txtEmail, tvResult, btnCheck, btnCrash) = createRefs()
 
         var email by remember { mutableStateOf("") }
         var result by remember { mutableStateOf("") }
@@ -109,11 +108,31 @@ fun Outline(modifier: Modifier = Modifier){
         ) {
             Text("Kiểm tra")
         }
+
+        Button(
+            onClick = {
+                throw RuntimeException("Test Crash") // Force a crash
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp, vertical = 10.dp)
+                .constrainAs(btnCrash) {
+                    top.linkTo(btnCheck.bottom, margin = 20.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+        ) {
+            Text("Test Crash")
+        }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun Email() {
-    Outline()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun Email() {
+//    Outline()
+//}

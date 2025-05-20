@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "437807276634",
+    "project_id": "mobileaz-2a14e",
+    "storage_bucket": "mobileaz-2a14e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437807276634:android:7e08d79c2ea4980803ee63",
+        "android_client_info": {
+          "package_name": "com.example.mobile_az"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF-F9z0YWS6fyO7mgUyy0NuYLknKpvv0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
