@@ -38,7 +38,7 @@ fun InputInfo(modifier: Modifier = Modifier) {
             .padding(horizontal = 20.dp)
     ) {
         val horizontalGuideLine30 = createGuidelineFromTop(0.3f)
-        val (tvTitle, boxForm, btnCheck, tvResult) = createRefs()
+        val (tvTitle, boxForm, btnCheck, tvResult, btnCrash) = createRefs()
 
         var name by remember { mutableStateOf("") }
         var age by remember { mutableStateOf("") }
@@ -113,6 +113,25 @@ fun InputInfo(modifier: Modifier = Modifier) {
                 end.linkTo(parent.end)
             }
         )
+        Button(
+            onClick = {
+                throw RuntimeException("Test Crash") // Force a crash
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp, vertical = 10.dp)
+                .constrainAs(btnCrash) {
+                    top.linkTo(btnCheck.bottom, margin = 20.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+        ) {
+            Text("Test Crash")
+        }
     }
 }
 

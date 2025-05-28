@@ -41,7 +41,9 @@ class MainActivity : ComponentActivity() {
 //                        ),
 //                        modifier = Modifier.padding(innerPadding)
 //                    )
-                    Outline(modifier = Modifier.padding(innerPadding))
+//                    Outline(modifier = Modifier.padding(innerPadding))
+//                    InputInfo(modifier = Modifier.padding(innerPadding))
+                    MenuNavigate(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

@@ -1,8 +1,12 @@
 package com.example.mobile_az
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -17,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -109,30 +114,30 @@ fun Outline(modifier: Modifier = Modifier){
             Text("Kiểm tra")
         }
 
-        Button(
-            onClick = {
-                throw RuntimeException("Test Crash") // Force a crash
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Red,
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 50.dp, vertical = 10.dp)
-                .constrainAs(btnCrash) {
-                    top.linkTo(btnCheck.bottom, margin = 20.dp)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
-        ) {
-            Text("Test Crash")
-        }
+//        Button(
+//            onClick = {
+//                throw RuntimeException("Test Crash") // Force a crash
+//            },
+//            colors = ButtonDefaults.buttonColors(
+//                containerColor = Color.Red,
+//                contentColor = Color.White
+//            ),
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(horizontal = 50.dp, vertical = 10.dp)
+//                .constrainAs(btnCrash) {
+//                    top.linkTo(btnCheck.bottom, margin = 20.dp)
+//                    start.linkTo(parent.start)
+//                    end.linkTo(parent.end)
+//                }
+//        ) {
+//            Text("Test Crash")
+//        }
     }
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun Email() {
-//    Outline()
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun Email() {
+    Outline()
+}
