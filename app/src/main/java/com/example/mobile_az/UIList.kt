@@ -104,12 +104,16 @@ fun UIListScreen(navController: NavController) {
                     top.linkTo(layoutLabel.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("columnLayout")
+                }
                 UIItem("Row", "Arranges elements horizontally", Modifier.constrainAs(rowItem) {
                     top.linkTo(columnItem.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("rowLayout")
+                }
 
                 Column(
                     modifier = Modifier

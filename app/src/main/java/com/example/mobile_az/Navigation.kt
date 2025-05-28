@@ -27,5 +27,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("imageDetail") {
             ImageDetailScreen(navController = navController)
         }
+        composable("rowLayout") {
+            RowLayoutScreen(navController)
+        }
+        composable("columnLayout") {
+            ColumnLayoutScreen(navController)
+        }
     }
 }
