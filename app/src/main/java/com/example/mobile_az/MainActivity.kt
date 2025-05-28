@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.mobile_az.ui.theme.Mobile_AZTheme
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -43,7 +46,7 @@ class MainActivity : ComponentActivity() {
 //                    )
 //                    Outline(modifier = Modifier.padding(innerPadding))
 //                    InputInfo(modifier = Modifier.padding(innerPadding))
-                    MenuNavigate(modifier = Modifier.padding(innerPadding))
+                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

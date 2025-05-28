@@ -20,9 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 
 @Composable
-fun MenuNavigate(modifier: Modifier = Modifier) {
+fun MenuNavigate(
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
     ConstraintLayout(
         modifier = modifier
             .fillMaxSize()
@@ -68,7 +72,9 @@ fun MenuNavigate(modifier: Modifier = Modifier) {
         )
 
         Button(
-            onClick = { },
+            onClick = {
+                navController.navigate("uiList")
+            },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF1E90FF),
@@ -89,8 +95,8 @@ fun MenuNavigate(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun Navigate() {
-    MenuNavigate()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun Navigate() {
+//    MenuNavigate()
+//}
