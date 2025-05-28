@@ -49,7 +49,7 @@ fun UIListScreen(navController: NavController) {
                 Text(
                     "Display",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier.constrainAs(displayLabel) {
                         top.linkTo(title.bottom, margin = 24.dp)
                         start.linkTo(parent.start)
@@ -74,7 +74,7 @@ fun UIListScreen(navController: NavController) {
                 Text(
                     "Input",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier.constrainAs(inputLabel) {
                         top.linkTo(imageItem.bottom, margin = 24.dp)
                         start.linkTo(parent.start)
@@ -84,17 +84,21 @@ fun UIListScreen(navController: NavController) {
                     top.linkTo(inputLabel.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("textfield")
+                }
                 UIItem("PasswordField", "Input field for passwords", Modifier.constrainAs(passwordFieldItem) {
                     top.linkTo(textFieldItem.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("passwordfield")
+                }
 
                 Text(
                     "Layout",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier.constrainAs(layoutLabel) {
                         top.linkTo(passwordFieldItem.bottom, margin = 24.dp)
                         start.linkTo(parent.start)
@@ -125,18 +129,20 @@ fun UIListScreen(navController: NavController) {
                         }
                         .fillMaxWidth()
                         .background(Color(0xFFFFA084), RoundedCornerShape(8.dp))
-                        .clickable { }
+                        .clickable {
+                            navController.navigate("exploreui")
+                        }
                         .padding(12.dp)
                 ) {
                     Text(
                         text = "Tự tìm hiểu",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp,
+                        fontSize = 18.sp,
                         color = Color.Black
                     )
                     Text(
                         text = "Tìm ra tất cả các thành phần UI Cơ bản",
-                        fontSize = 12.sp,
+                        fontSize = 16.sp,
                         color = Color.DarkGray
                     )
                 }
@@ -155,11 +161,11 @@ fun UIItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color(0xFFEF41FF), RoundedCornerShape(8.dp))
+            .background(Color(0xFFFF32AD), RoundedCornerShape(8.dp))
             .clickable(enabled = onClick != null) { onClick?.invoke() }
             .padding(12.dp)
     ) {
-        Text(text = title, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-        Text(text = desc, fontSize = 12.sp)
+        Text(text = title, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        Text(text = desc, fontSize = 16.sp)
     }
 }

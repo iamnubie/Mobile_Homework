@@ -33,5 +33,14 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("columnLayout") {
             ColumnLayoutScreen(navController)
         }
+        composable("textfield") {
+            TextFieldScreen(navController)
+        }
+        composable("passwordfield") {
+            PasswordFieldScreen(navController)
+        }
+        composable("exploreui") {
+            BasicUIScreen(navController)
+        }
     }
 }
