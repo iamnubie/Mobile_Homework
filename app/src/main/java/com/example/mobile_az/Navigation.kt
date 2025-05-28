@@ -19,7 +19,13 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             MenuNavigate(navController = navController)
         }
         composable("uiList") {
-            UIListScreen()
+            UIListScreen(navController = navController)
+        }
+        composable("textDetail") {
+            TextDetailScreen(navController = navController)
+        }
+        composable("imageDetail") {
+            ImageDetailScreen(navController = navController)
         }
     }
 }

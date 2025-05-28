@@ -14,9 +14,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 
 @Composable
-fun UIListScreen() {
+fun UIListScreen(navController: NavController) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -58,13 +59,17 @@ fun UIListScreen() {
                     top.linkTo(displayLabel.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("textDetail")
+                }
 
                 UIItem("Image", "Displays an image", Modifier.constrainAs(imageItem) {
                     top.linkTo(textItem.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                })
+                }) {
+                    navController.navigate("imageDetail")
+                }
 
                 Text(
                     "Input",
@@ -115,7 +120,7 @@ fun UIListScreen() {
                             bottom.linkTo(parent.bottom, margin = 24.dp)
                         }
                         .fillMaxWidth()
-                        .background(Color(0xFFFFC0C0), RoundedCornerShape(8.dp))
+                        .background(Color(0xFFFFA084), RoundedCornerShape(8.dp))
                         .clickable { }
                         .padding(12.dp)
                 ) {
@@ -137,11 +142,17 @@ fun UIListScreen() {
 }
 
 @Composable
-fun UIItem(title: String, desc: String, modifier: Modifier = Modifier) {
+fun UIItem(
+    title: String,
+    desc: String,
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .background(Color(0xFFEF41FF), RoundedCornerShape(8.dp))
+            .clickable(enabled = onClick != null) { onClick?.invoke() }
             .padding(12.dp)
     ) {
         Text(text = title, fontWeight = FontWeight.Bold, fontSize = 14.sp)
