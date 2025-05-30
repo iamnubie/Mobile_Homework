@@ -39,6 +39,8 @@ fun ImageDetailScreen(navController: NavController) {
                 modifier = Modifier
             ) {
                 val (btnBack, title, imageUrl, textUrl, imageApp, textApp) = createRefs()
+                val guildeLine50 = createGuidelineFromStart(0.5f)
+                val guildeLine55 = createGuidelineFromStart(0.05f)
 
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowLeft,
@@ -92,19 +94,27 @@ fun ImageDetailScreen(navController: NavController) {
                     }
                 )
 
-                Image(
-                    painter = painterResource(id = R.drawable.school),
-                    contentDescription = "In app",
-                    contentScale = ContentScale.Crop,
+                Box(
                     modifier = Modifier
+                        .height(300.dp)
+                        .background(color = Color.Black)
                         .constrainAs(imageApp) {
                             top.linkTo(textUrl.bottom, margin = 32.dp)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
+                            start.linkTo(guildeLine55)
+                            end.linkTo(guildeLine50)
                         }
-                        .clip(RoundedCornerShape(12.dp))
-                        .fillMaxWidth()
-                )
+                ){
+                    Image(
+                        painter = painterResource(id = R.drawable.school),
+                        contentDescription = "In app",
+                        modifier = Modifier
+                            .padding(top = 90.dp)
+
+                            .clip(RoundedCornerShape(12.dp))
+                            .width(180.dp),
+                        contentScale = ContentScale.Fit,
+                    )
+                }
 
                 Text(
                     "In app",
