@@ -2,9 +2,12 @@ package com.example.mobile_az
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.mobile_az.tuan04.BasicUIScreen
 import com.example.mobile_az.tuan04.ColumnLayoutScreen
 import com.example.mobile_az.tuan04.ImageDetailScreen
@@ -21,9 +24,20 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 
     NavHost(
         navController = navController,
-        startDestination = "menu",
+        startDestination = "splash",
         modifier = modifier
     ) {
+        composable("splash") {
+            SplashScreen(navController)
+        }
+
+        composable(
+            "onboarding/{page}",
+            arguments = listOf(navArgument("page") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val page = backStackEntry.arguments?.getInt("page") ?: 0
+            OnBoardingScreen(navController, page)
+        }
         composable("menu") {
             MenuNavigate(navController = navController)
         }
@@ -51,5 +65,20 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("exploreui") {
             BasicUIScreen(navController)
         }
+    }
+}
+fun navigateTo(
+    navController: NavHostController,
+    route: String,
+    cleanStack: Boolean = false
+) {
+    navController.navigate(route) {
+        if (cleanStack) {
+            popUpTo(navController.graph.startDestinationId) {
+                inclusive = true
+            }
+        }
+        launchSingleTop = true
+        restoreState = true
     }
 }
