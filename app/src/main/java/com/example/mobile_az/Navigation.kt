@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,6 +13,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mobile_az.data_flow_navigation.ConfirmScreen
+import com.example.mobile_az.data_flow_navigation.EnterEmailScreen
+import com.example.mobile_az.data_flow_navigation.ForgotPasswordViewModel
+import com.example.mobile_az.data_flow_navigation.ResetPasswordScreen
+import com.example.mobile_az.data_flow_navigation.VerifyCodeScreen
 import com.example.mobile_az.library_management.BookListScreen
 import com.example.mobile_az.library_management.MainBottomBar
 import com.example.mobile_az.library_management.ManageScreen
@@ -33,6 +39,8 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     val currentRoute = currentRoute(navController)
     val showBottomBar = currentRoute in listOf("manage", "books", "students")
+    val vm: ForgotPasswordViewModel = viewModel()
+
     Scaffold(
         bottomBar = {
             if (showBottomBar) {
@@ -43,7 +51,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     ) { innerPadding ->
     NavHost(
         navController = navController,
-        startDestination = "manage",
+        startDestination = "enter", //splash,manage,enter
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
@@ -93,6 +101,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("students") {
             StudentListScreen()
         }
+        composable("enter") { EnterEmailScreen(navController, vm) }
+        composable("verify") { VerifyCodeScreen(navController, vm) }
+        composable("reset") { ResetPasswordScreen(navController, vm) }
+        composable("confirm") { ConfirmScreen(vm, navController) }
+
 
     }
         }

@@ -22,3 +22,10 @@ data class Student(
     val name: String? = null,
     val borrowedBooks: List<String>? = null
 )
+
+data class ForgotPasswordState(
+    var email: String = "",
+    var code: String = "",
+    var password: String = "",
+    var confirmPassword: String = ""
+)
