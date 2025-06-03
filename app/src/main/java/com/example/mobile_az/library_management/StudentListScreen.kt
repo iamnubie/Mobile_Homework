@@ -1,9 +1,12 @@
 package com.example.mobile_az.library_management
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
@@ -13,47 +16,55 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.mobile_az.Student
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun StudentListScreen() {
-    val db = Firebase.firestore
-    var students by remember { mutableStateOf(listOf<Student>()) }
+fun StudentListScreen(viewModel: StudentListViewModel = viewModel()) {
+    val students by viewModel.students.collectAsState()
     var newName by remember { mutableStateOf("") }
-
-    LaunchedEffect(true) {
-        db.collection("students").addSnapshotListener { snapshot, _ ->
-            snapshot?.let {
-                students = it.documents.mapNotNull { doc -> doc.toObject(Student::class.java) }
-            }
-        }
-    }
+    val context = LocalContext.current
 
     Column(Modifier.padding(16.dp)) {
-        TextField(value = newName, onValueChange = { newName = it }, label = { Text("Tên sinh viên") })
-        Button(onClick = {
-            val student = Student(name = newName)
-            student.id?.let { db.collection("students").document(it).set(student) }
-            newName = ""
-        }, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+        InputField(value = newName, onValueChange = { newName = it }, label = "Tên sinh viên")
+        Button(
+            onClick = {
+                if (newName.isBlank()) {
+                    Toast.makeText(context, "Vui lòng nhập tên sinh viên", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.addStudent(newName)
+                    newName = ""
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp)
+        ) {
             Text("Thêm sinh viên")
         }
-        students.forEach { student ->
-            Row(verticalAlignment = Alignment.CenterVertically) {
+
+        LazyColumn {
+            items(students) { student ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 student.name?.let { Text(it, modifier = Modifier.weight(1f)) }
-                IconButton(onClick = { student.id?.let { db.collection("students").document(it).delete() } }) {
+                IconButton(onClick = { student.id?.let(viewModel::deleteStudent) }) {
                     Icon(Icons.Default.Delete, contentDescription = "Xóa")
                 }
             }
+        }
         }
     }
 }

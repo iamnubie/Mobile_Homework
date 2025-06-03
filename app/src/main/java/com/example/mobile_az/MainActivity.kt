@@ -53,8 +53,6 @@ class MainActivity : ComponentActivity() {
 
                     AppNavigation()
 
-//                    MainScreen(modifier = Modifier.padding(innerPadding))
-
             }
         }
     }
