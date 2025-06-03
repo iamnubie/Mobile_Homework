@@ -3,24 +3,30 @@ package com.example.mobile_az
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mobile_az.library_management.BookListScreen
+import com.example.mobile_az.library_management.MainBottomBar
+import com.example.mobile_az.library_management.ManageScreen
+import com.example.mobile_az.library_management.StudentListScreen
 import com.example.mobile_az.navigate_oop.OnBoardingScreen
 import com.example.mobile_az.navigate_oop.SplashScreen
-import com.example.mobile_az.tuan04.BasicUIScreen
-import com.example.mobile_az.tuan04.ColumnLayoutScreen
-import com.example.mobile_az.tuan04.ImageDetailScreen
-import com.example.mobile_az.tuan04.MenuNavigate
-import com.example.mobile_az.tuan04.PasswordFieldScreen
-import com.example.mobile_az.tuan04.RowLayoutScreen
-import com.example.mobile_az.tuan04.TextDetailScreen
-import com.example.mobile_az.tuan04.TextFieldScreen
-import com.example.mobile_az.tuan04.UIListScreen
+import com.example.mobile_az.tuan03.BasicUIScreen
+import com.example.mobile_az.tuan03.ColumnLayoutScreen
+import com.example.mobile_az.tuan03.ImageDetailScreen
+import com.example.mobile_az.tuan03.MenuNavigate
+import com.example.mobile_az.tuan03.PasswordFieldScreen
+import com.example.mobile_az.tuan03.RowLayoutScreen
+import com.example.mobile_az.tuan03.TextDetailScreen
+import com.example.mobile_az.tuan03.TextFieldScreen
+import com.example.mobile_az.tuan03.UIListScreen
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
@@ -91,6 +97,13 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     }
         }
 }
+
+@Composable
+fun currentRoute(navController: NavHostController): String? {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    return navBackStackEntry?.destination?.route
+}
+
 fun navigateTo(
     navController: NavHostController,
     route: String,

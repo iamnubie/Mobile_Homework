@@ -1,4 +1,4 @@
-package com.example.mobile_az
+package com.example.mobile_az.library_management
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.mobile_az.Student
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 

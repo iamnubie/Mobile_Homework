@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Mobile_AZTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
 //                    MyInfo(
 //                        data = Data(
 //                            image = R.drawable.avatar,
@@ -51,10 +51,10 @@ class MainActivity : ComponentActivity() {
 
 //                    InputInfo(modifier = Modifier.padding(innerPadding))
 
-                    AppNavigation(modifier = Modifier.padding(innerPadding))
+                    AppNavigation()
 
 //                    MainScreen(modifier = Modifier.padding(innerPadding))
-                }
+
             }
         }
     }
