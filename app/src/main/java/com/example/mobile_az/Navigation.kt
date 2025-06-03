@@ -1,5 +1,7 @@
 package com.example.mobile_az
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -23,11 +25,20 @@ import com.example.mobile_az.tuan04.UIListScreen
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-
+    val currentRoute = currentRoute(navController)
+    val showBottomBar = currentRoute in listOf("manage", "books", "students")
+    Scaffold(
+        bottomBar = {
+            if (showBottomBar) {
+                MainBottomBar(navController)
+            }
+        },
+        modifier = modifier
+    ) { innerPadding ->
     NavHost(
         navController = navController,
-        startDestination = "splash",
-        modifier = modifier
+        startDestination = "manage",
+        modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
             SplashScreen(navController)
@@ -67,7 +78,18 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("exploreui") {
             BasicUIScreen(navController)
         }
+        composable("manage") {
+            ManageScreen()
+        }
+        composable("books") {
+            BookListScreen()
+        }
+        composable("students") {
+            StudentListScreen()
+        }
+
     }
+        }
 }
 fun navigateTo(
     navController: NavHostController,

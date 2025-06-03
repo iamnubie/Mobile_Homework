@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mobile_az.ui.theme.Mobile_AZTheme
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var analytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         analytics = Firebase.analytics
         enableEdgeToEdge()
         setContent {
@@ -44,9 +46,14 @@ class MainActivity : ComponentActivity() {
 //                        ),
 //                        modifier = Modifier.padding(innerPadding)
 //                    )
+
 //                    Outline(modifier = Modifier.padding(innerPadding))
+
 //                    InputInfo(modifier = Modifier.padding(innerPadding))
+
                     AppNavigation(modifier = Modifier.padding(innerPadding))
+
+//                    MainScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

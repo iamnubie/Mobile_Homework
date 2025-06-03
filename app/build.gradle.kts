@@ -71,5 +71,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation ("androidx.compose.material:material:1.6.1")
 
 }
