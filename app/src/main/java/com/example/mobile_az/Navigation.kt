@@ -5,6 +5,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mobile_az.tuan04.BasicUIScreen
+import com.example.mobile_az.tuan04.ColumnLayoutScreen
+import com.example.mobile_az.tuan04.ImageDetailScreen
+import com.example.mobile_az.tuan04.MenuNavigate
+import com.example.mobile_az.tuan04.PasswordFieldScreen
+import com.example.mobile_az.tuan04.RowLayoutScreen
+import com.example.mobile_az.tuan04.TextDetailScreen
+import com.example.mobile_az.tuan04.TextFieldScreen
+import com.example.mobile_az.tuan04.UIListScreen
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
