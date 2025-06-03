@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mobile_az.navigate_oop.OnBoardingScreen
+import com.example.mobile_az.navigate_oop.SplashScreen
 import com.example.mobile_az.tuan04.BasicUIScreen
 import com.example.mobile_az.tuan04.ColumnLayoutScreen
 import com.example.mobile_az.tuan04.ImageDetailScreen
