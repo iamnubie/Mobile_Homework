@@ -63,7 +63,10 @@ fun EnterEmailScreen(nav: NavHostController, vm: ForgotPasswordViewModel) {
                     }
                     else -> {
                         emailError.value = null
-                        vm.state = vm.state.copy(email = emailTrimmed)
+                        val code = (10000..99999).random().toString()
+                        vm.state = vm.state.copy(email = emailTrimmed, code = code)
+                        // Gửi code sang verify qua savedStateHandle
+                        nav.currentBackStackEntry?.savedStateHandle?.set("verification_code", code)
                         nav.navigate("verify")
                     }
                 }

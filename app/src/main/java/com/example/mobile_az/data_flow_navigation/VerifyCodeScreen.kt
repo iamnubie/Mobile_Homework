@@ -1,27 +1,46 @@
 package com.example.mobile_az.data_flow_navigation
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
+import kotlinx.coroutines.delay
 
 @Composable
 fun VerifyCodeScreen(nav: NavHostController, vm: ForgotPasswordViewModel) {
     val codeError = remember { mutableStateOf<String?>(null) }
+    val navEntry = nav.previousBackStackEntry
+    val sentCode = navEntry?.savedStateHandle?.get<String>("verification_code")
+    val codeInput = remember { mutableStateOf("") }
+    val snackbarHostState = remember { androidx.compose.material3.SnackbarHostState() }
 
-    ConstraintLayout(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    LaunchedEffect(Unit) {
+        sentCode?.let {
+            snackbarHostState.showSnackbar("Mã xác thực là: $it", duration = SnackbarDuration.Long)
+        }
+    }
+
+    Scaffold(
+        snackbarHost = { androidx.compose.material3.SnackbarHost(hostState = snackbarHostState) }
+    ) { innerPadding ->
+    ConstraintLayout(modifier = Modifier.padding(innerPadding).fillMaxSize().padding(16.dp)) {
         val (back, errorText, input, button, logo) = createRefs()
         val guildeLine5 = createGuidelineFromTop(0.05f)
 
@@ -40,16 +59,29 @@ fun VerifyCodeScreen(nav: NavHostController, vm: ForgotPasswordViewModel) {
                 }
         )
 
-        InputField("Verification Code", vm.state.code, { vm.state = vm.state.copy(code = it) },
+//        InputField(
+//            "Verification Code",
+//            vm.state.code, { vm.state = vm.state.copy(code = it) },
+//            modifier = Modifier.constrainAs(input) {
+//                top.linkTo(logo.bottom, margin = 16.dp)
+//                centerHorizontallyTo(parent)
+//            }
+//        )
+        InputField(
+            label = "Verification Code",
+            value = codeInput.value,
+            onValueChange = { codeInput.value = it },
             modifier = Modifier.constrainAs(input) {
                 top.linkTo(logo.bottom, margin = 16.dp)
                 centerHorizontallyTo(parent)
-            })
+            }
+        )
 
         ReusableButton(
             text = "Next",
             onClick = {
-                val codeTrimmed = vm.state.code.trim()
+                val codeTrimmed = codeInput.value.trim()
+                val expectedCode = sentCode?.trim() ?: ""
 
                 when {
                     codeTrimmed.isEmpty() -> {
@@ -60,6 +92,9 @@ fun VerifyCodeScreen(nav: NavHostController, vm: ForgotPasswordViewModel) {
                     }
                     codeTrimmed.length != 5 -> {
                         codeError.value = "Mã xác thực phải gồm đúng 5 chữ số"
+                    }
+                    codeTrimmed != expectedCode -> {
+                        codeError.value = "Mã xác thực không chính xác"
                     }
                     else -> {
                         codeError.value = null
@@ -87,5 +122,6 @@ fun VerifyCodeScreen(nav: NavHostController, vm: ForgotPasswordViewModel) {
             )
         }
 
+    }
     }
 }
