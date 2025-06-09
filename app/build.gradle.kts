@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +8,13 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     id("com.google.firebase.crashlytics")
 }
+
+
+val localProperties = Properties().apply {
+    load(FileInputStream(rootProject.file("local.properties")))
+}
+val googleClientId = localProperties.getProperty("GOOGLE_CLIENT_ID") ?: ""
+
 
 android {
     namespace = "com.example.mobile_az"
@@ -18,6 +28,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleClientId\"")
+
     }
 
     buildTypes {
@@ -38,6 +50,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

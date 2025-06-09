@@ -47,6 +47,7 @@ import androidx.compose.runtime.MutableState
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.example.mobile_az.BuildConfig
 import com.example.mobile_az.MainActivity
 import com.example.mobile_az.R
 
@@ -111,7 +112,7 @@ fun showLoginNotification(context: Context, title: String, message: String) {
 }*/
 fun getGoogleSignInClient(context: Context): com.google.android.gms.auth.api.signin.GoogleSignInClient {
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken("437807276634-jg8jj69n86gsufo45n7h8gt93svks51v.apps.googleusercontent.com")
+        .requestIdToken(BuildConfig.GOOGLE_CLIENT_ID)
         .requestEmail()
         .build()
     return GoogleSignIn.getClient(context, gso)
