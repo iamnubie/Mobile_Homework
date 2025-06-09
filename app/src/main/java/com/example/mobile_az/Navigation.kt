@@ -110,6 +110,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("user_profile") {
             UserProfileScreen(navController)
         }
+        composable("request_data") {
+            ProductDetailScreen(navController)
+        }
     }
         }
 }

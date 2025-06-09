@@ -29,3 +29,10 @@ data class ForgotPasswordState(
     var password: String = "",
     var confirmPassword: String = ""
 )
+data class Product(
+    val name: String? = null,
+    val price: Double? = null,
+    val des: String? = null,
+    val imgURL: String? = null
+)
+
