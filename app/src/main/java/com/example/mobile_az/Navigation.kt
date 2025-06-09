@@ -16,6 +16,7 @@ import androidx.navigation.navArgument
 import com.example.mobile_az.data_flow_navigation.ConfirmScreen
 import com.example.mobile_az.data_flow_navigation.EnterEmailScreen
 import com.example.mobile_az.data_flow_navigation.ForgotPasswordViewModel
+import com.example.mobile_az.data_flow_navigation.GGLoginScreen
 import com.example.mobile_az.data_flow_navigation.ResetPasswordScreen
 import com.example.mobile_az.data_flow_navigation.VerifyCodeScreen
 import com.example.mobile_az.library_management.BookListScreen
@@ -51,7 +52,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     ) { innerPadding ->
     NavHost(
         navController = navController,
-        startDestination = "enter", //splash,manage,enter
+        startDestination = "google", //splash,manage,enter
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
@@ -105,8 +106,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("verify") { VerifyCodeScreen(navController, vm) }
         composable("reset") { ResetPasswordScreen(navController, vm) }
         composable("confirm") { ConfirmScreen(vm, navController) }
-
-
+        composable("google") { GGLoginScreen(navController) }
+        composable("user_profile") {
+            UserProfileScreen(navController)
+        }
     }
         }
 }

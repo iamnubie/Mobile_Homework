@@ -123,3 +123,52 @@ fun HeaderLogo(
         )
     }
 }
+@Composable
+fun HeaderLogo2(
+    subtitle: String,
+    modifier: Modifier = Modifier
+) {
+    ConstraintLayout(modifier = modifier.fillMaxWidth()) {
+        val (logo, text,  subtitleText) = createRefs()
+
+        Image(
+            painter = painterResource(id = R.drawable.school_logo),
+            contentDescription = "Logo",
+            modifier = Modifier
+                .size(170.dp)
+                .constrainAs(logo) {
+                    top.linkTo(parent.top)
+                    centerHorizontallyTo(parent)
+                }
+        )
+
+        Text(
+            text = "SmartTasks",
+            modifier = Modifier.constrainAs(text) {
+                top.linkTo(logo.bottom)
+                centerHorizontallyTo(parent)
+            },
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.righteous)),
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.Magenta
+            )
+        )
+
+        Text(
+            text = subtitle,
+            fontSize = 16.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .constrainAs(subtitleText) {
+                    top.linkTo(text.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    centerHorizontallyTo(parent)
+                }
+                .fillMaxWidth()
+        )
+    }
+}
