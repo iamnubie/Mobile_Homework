@@ -60,7 +60,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         val sharedViewModel: TaskViewModel = viewModel()
     NavHost(
         navController = navController,
-        startDestination = "tasklist", //splash,manage,enter, google
+        startDestination = "google", //splash,manage,enter, google, tasklist
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
@@ -137,6 +137,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("add_new_task") {
             AddNewTaskScreen(navController, sharedViewModel)
         }
+        composable("permission") {
+            PermissionRequestScreen(navController)
+        }
+
     }
         }
 }

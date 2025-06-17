@@ -195,7 +195,7 @@ fun GGLoginScreen(nav: NavHostController) {
     }
 
     ConstraintLayout(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        val (logo, intro, wel, resultBox, productBtn, button) = createRefs()
+        val (logo, intro, wel, resultBox, productBtn, button, button2, button3) = createRefs()
         val guildeLine1 = createGuidelineFromTop(0.1f)
         val guildeLine5 = createGuidelineFromTop(0.5f)
 
@@ -283,7 +283,7 @@ fun GGLoginScreen(nav: NavHostController) {
             ),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
-                .constrainAs(createRef()) {
+                .constrainAs(button2) {
                     top.linkTo(productBtn.bottom, margin = 16.dp)
                     centerHorizontallyTo(parent)
                 }
@@ -292,6 +292,26 @@ fun GGLoginScreen(nav: NavHostController) {
                 .height(56.dp)
         ) {
             Text("Quản lý công việc", fontWeight = FontWeight.Bold)
+        }
+        Button(
+            onClick = {
+                nav.navigate("permission")
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF4CAF50),
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(12.dp),
+            modifier = Modifier
+                .constrainAs(button3) {
+                    top.linkTo(button2.bottom, margin = 16.dp)
+                    centerHorizontallyTo(parent)
+                }
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .height(56.dp)
+        ) {
+            Text("Cấp quyền", fontWeight = FontWeight.Bold)
         }
 
         loginMessage.value?.let { msg ->
