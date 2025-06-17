@@ -206,15 +206,6 @@ fun GGLoginScreen(nav: NavHostController) {
                     top.linkTo(guildeLine1)
                 }
         )
-//        val gso = remember {
-//            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken("437807276634-jg8jj69n86gsufo45n7h8gt93svks51v.apps.googleusercontent.com")
-//                .requestEmail()
-//                .build()
-//        }
-//        val googleSignInClient = remember {
-//            GoogleSignIn.getClient(context, gso)
-//        }
         Text(
             text = "Welcome",
             color = MaterialTheme.colorScheme.primary,
@@ -267,7 +258,7 @@ fun GGLoginScreen(nav: NavHostController) {
                 nav.navigate("request_data")
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF64B5F6),
+                containerColor = Color(0xFF90CAF9),
                 contentColor = Color.White
             ),
             shape = RoundedCornerShape(12.dp),
@@ -278,9 +269,29 @@ fun GGLoginScreen(nav: NavHostController) {
                 }
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
-                .height(50.dp)
+                .height(56.dp)
         ) {
             Text("Xem sản phẩm", fontWeight = FontWeight.Bold)
+        }
+        Button(
+            onClick = {
+                nav.navigate("tasklist")
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF4CAF50),
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(12.dp),
+            modifier = Modifier
+                .constrainAs(createRef()) {
+                    top.linkTo(productBtn.bottom, margin = 16.dp)
+                    centerHorizontallyTo(parent)
+                }
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .height(56.dp)
+        ) {
+            Text("Quản lý công việc", fontWeight = FontWeight.Bold)
         }
 
         loginMessage.value?.let { msg ->

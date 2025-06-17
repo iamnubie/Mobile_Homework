@@ -36,3 +36,44 @@ data class Product(
     val imgURL: String? = null
 )
 
+data class Subtask(
+    val id: Int? = null,
+    val title: String? = null,
+    val isCompleted: Boolean? = null
+)
+data class Attachment(
+    val id: Int? = null,
+    val fileName: String? = null,
+    val fileUrl: String? = null
+)
+data class Reminder(
+    val id: Int? = null,
+    val time: String? = null,
+    val type: String? = null
+)
+data class Task(
+    val id: Int? = null,
+    val title: String? = null,
+    val desImageURL: String? = null,
+    val description: String? = null,
+    val status: String? = null,
+    val priority: String? = null,
+    val category: String? = null,
+    val dueDate: String? = null,
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val subtasks: List<Subtask>? = null,
+    val attachments: List<Attachment>? = null,
+    val reminders: List<Reminder>? = null
+)
+data class TaskResponse(
+    val isSuccess: Boolean? = null,
+    val message: String? = null,
+    val data: List<Task>? = null
+)
+data class SingleTaskResponse(
+    val isSuccess: Boolean? = null,
+    val message: String? = null,
+    val data: Task? = null
+)
+

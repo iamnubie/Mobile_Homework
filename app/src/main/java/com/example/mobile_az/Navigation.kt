@@ -52,9 +52,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         },
         modifier = modifier
     ) { innerPadding ->
+        val sharedViewModel: TaskViewModel = viewModel()
     NavHost(
         navController = navController,
-        startDestination = "google", //splash,manage,enter
+        startDestination = "tasklist", //splash,manage,enter, google
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
@@ -114,6 +115,22 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
         composable("request_data") {
             ProductDetailScreen(navController)
+        }
+        composable("tasklist") { TaskListScreen(navController) }
+        composable(
+            "task_detail/{taskId}",
+            arguments = listOf(navArgument("taskId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val taskId = backStackEntry.arguments?.getInt("taskId")
+            if (taskId != null) {
+                TaskDetailScreen(navController, taskId)
+            }
+        }
+        composable("add_task_list") {
+            AddTaskListScreen(navController, sharedViewModel)
+        }
+        composable("add_new_task") {
+            AddNewTaskScreen(navController, sharedViewModel)
         }
     }
         }
