@@ -25,6 +25,11 @@ import com.example.mobile_az.library_management.BookListScreen
 import com.example.mobile_az.library_management.MainBottomBar
 import com.example.mobile_az.library_management.ManageScreen
 import com.example.mobile_az.library_management.StudentListScreen
+import com.example.mobile_az.mvvm.AddNewTaskScreen
+import com.example.mobile_az.mvvm.AddTaskListScreen
+import com.example.mobile_az.mvvm.TaskDetailScreen
+import com.example.mobile_az.mvvm.TaskListScreen
+import com.example.mobile_az.mvvm.TaskViewModel
 import com.example.mobile_az.navigate_oop.OnBoardingScreen
 import com.example.mobile_az.navigate_oop.SplashScreen
 import com.example.mobile_az.tuan03.BasicUIScreen

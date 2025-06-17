@@ -1,8 +1,10 @@
-package com.example.mobile_az
+package com.example.mobile_az.mvvm
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mobile_az.RetrofitInstance
+import com.example.mobile_az.Task
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
