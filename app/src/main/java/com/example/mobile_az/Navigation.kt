@@ -19,6 +19,8 @@ import com.example.mobile_az.data_flow_navigation.ForgotPasswordViewModel
 import com.example.mobile_az.data_flow_navigation.GGLoginScreen
 import com.example.mobile_az.data_flow_navigation.ResetPasswordScreen
 import com.example.mobile_az.data_flow_navigation.VerifyCodeScreen
+import com.example.mobile_az.fetch_api.ProductDetailScreen
+import com.example.mobile_az.fetch_api.UserProfileScreen
 import com.example.mobile_az.library_management.BookListScreen
 import com.example.mobile_az.library_management.MainBottomBar
 import com.example.mobile_az.library_management.ManageScreen
