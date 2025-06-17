@@ -111,7 +111,7 @@ fun ProductCard(product: Product, nav: NavController) {
             )
 
             AsyncImage(
-                model = product.imgURL ?: "",
+                model = product.imgURL ?: R.drawable.avatar,
                 contentDescription = product.name ?: "Ảnh",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
