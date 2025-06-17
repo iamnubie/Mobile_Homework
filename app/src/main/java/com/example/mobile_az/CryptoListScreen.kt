@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +22,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +34,45 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.NavHostController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import kotlin.io.path.Path
+
+@Composable
+fun LineChartView(
+    modifier: Modifier = Modifier,
+    points: List<Float>
+) {
+    Canvas(modifier = modifier) {
+        if (points.isEmpty()) return@Canvas
+
+        val maxY = points.maxOrNull() ?: 1f
+        val minY = points.minOrNull() ?: 0f
+        val rangeY = maxY - minY
+
+        val widthStep = size.width / (points.size - 1).coerceAtLeast(1)
+
+        val path = androidx.compose.ui.graphics.Path().apply {
+            points.forEachIndexed { index, point ->
+                val x = index * widthStep
+                val y = size.height - ((point - minY) / rangeY) * size.height
+                if (index == 0) moveTo(x, y) else lineTo(x, y)
+            }
+        }
+
+        drawPath(
+            path = path,
+            color = Color.Cyan,
+            style = Stroke(width = 2.dp.toPx(), cap = StrokeCap.Round)
+        )
+    }
+}
+fun generateMockLineData(basePrice: Double): List<Float> {
+    val random = java.util.Random()
+    return List(20) {
+        val noise = random.nextFloat() * 4 - 2 // dao động ±2
+        (basePrice + noise).toFloat()
+    }
+}
+
 
 @Composable
 fun CryptoScreen(viewModel: CryptoViewModel = viewModel()) {
@@ -96,11 +138,11 @@ fun CryptoScreen(viewModel: CryptoViewModel = viewModel()) {
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         // Placeholder for chart line
-                        Box(
+                        LineChartView(
                             modifier = Modifier
                                 .height(40.dp)
-                                .fillMaxWidth()
-                                .background(Color.Blue, RoundedCornerShape(6.dp))
+                                .fillMaxWidth(),
+                            points = generateMockLineData(coin.current_price)
                         )
                     }
                 }
