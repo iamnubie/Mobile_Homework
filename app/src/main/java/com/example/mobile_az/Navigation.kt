@@ -60,7 +60,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         val sharedViewModel: TaskViewModel = viewModel()
     NavHost(
         navController = navController,
-        startDestination = "google", //splash,manage,enter, google, tasklist
+        startDestination = "crypto", //splash,manage,enter, google, tasklist, crypto
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {
@@ -139,6 +139,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
         composable("permission") {
             PermissionRequestScreen(navController)
+        }
+        composable("crypto") {
+            CryptoScreen()
         }
 
     }
