@@ -138,12 +138,12 @@ fun CryptoScreen(viewModel: CryptoViewModel = viewModel()) {
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         // Placeholder for chart line
-                        LineChartView(
-                            modifier = Modifier
-                                .height(40.dp)
-                                .fillMaxWidth(),
-                            points = generateMockLineData(coin.current_price)
-                        )
+//                        LineChartView(
+//                            modifier = Modifier
+//                                .height(40.dp)
+//                                .fillMaxWidth(),
+//                            points = generateMockLineData(coin.current_price)
+//                        )
                     }
                 }
             }
