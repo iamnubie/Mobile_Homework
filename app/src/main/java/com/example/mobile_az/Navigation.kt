@@ -60,7 +60,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         val sharedViewModel: TaskViewModel = viewModel()
     NavHost(
         navController = navController,
-        startDestination = "crypto", //splash,manage,enter, google, tasklist, crypto
+        startDestination = "tasklist", //splash,manage,enter, google, tasklist, crypto
         modifier = Modifier.padding(innerPadding)
     ) {
         composable("splash") {

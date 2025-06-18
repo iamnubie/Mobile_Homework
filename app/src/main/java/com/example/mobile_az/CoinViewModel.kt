@@ -30,7 +30,7 @@ class CryptoViewModel : ViewModel() {
                 } finally {
                     _isLoading.value = false
                 }
-                delay(6000) // chờ 5 giây trước khi gọi lại
+                delay(6000) // chờ 6 giây trước khi gọi lại
             }
         }
     }
